@@ -17,38 +17,38 @@
       --success: #22c55e;
     }
 
-    * { box-sizing: border-box; }
-    
-    html, body {
-      margin: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
-    
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(to bottom, var(--bg1), var(--bg2));
-      color: var(--text);
-    }
-    
-    #gameWrap {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      user-select: none;
-      -webkit-user-select: none;
-      touch-action: manipulation;
-      cursor: crosshair;
-    }
-    
-    canvas {
-      display: block;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to bottom, #7fc7ff 0%, #cfeeff 62%, #a9d6a5 62%, #789a50 100%);
-    }
+  * { box-sizing: border-box; }
+  
+  html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(to bottom, var(--bg1), var(--bg2));
+    color: var(--text);
+  }
+  
+  #gameWrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    cursor: crosshair;
+  }
+  
+  canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #7fc7ff 0%, #cfeeff 62%, #a9d6a5 62%, #789a50 100%);
+  }
 
     .hud {
       position: absolute;
@@ -321,19 +321,18 @@
     return { minScale, maxScale };
   }
 
-  function resize() {
-    const dpr = Math.max(1, window.devicePixelRatio || 1);
-    const rect = canvas.getBoundingClientRect();
-  
-    width = Math.max(1, rect.width);
-    height = Math.max(1, rect.height);
-  
-    canvas.width = Math.floor(width * dpr);
-    canvas.height = Math.floor(height * dpr);
-  
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    createClouds();
-  }
+function resize() {
+  const rect = canvas.getBoundingClientRect();
+
+  width = Math.max(1, Math.floor(rect.width));
+  height = Math.max(1, Math.floor(rect.height));
+
+  canvas.width = width;
+  canvas.height = height;
+
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  createClouds();
+}
 
   function resetGame() {
     score = 0;
